@@ -7,7 +7,7 @@ Supported voice enabled tasks are:
 3. Open windows applications like, outlook ,slack, word, chrome, etc. 
 4. Getting weather information. 
 
-The tool is designed to be highly configurable and adhere to S.O.L.I.D design principles, and is highly reliant on design patterns. 
+The tool is designed to be highly configurable and adheres to S.O.L.I.D design principles, and relies strongly on design patterns. 
 
 All the supported operations, are designed to be easily extensible. 
 
