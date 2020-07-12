@@ -17,7 +17,7 @@ namespace Riff
         private JObject m_weatherResponseObject = null;
         private string m_latitude = "37.5934";
         private string m_longitude = "-122.0439";
-        private string m_apiKey = "4a6e22581624fec26914f50cd6342cee";
+        private string m_apiKey = "";
         private bool m_weatherDataCached = false;
         private string RequestUrl
         {
