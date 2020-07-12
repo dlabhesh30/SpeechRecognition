@@ -1,0 +1,119 @@
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\bin\Debug\JARVIS.exe.config
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\bin\Debug\JARVIS.exe
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\bin\Debug\JARVIS.pdb
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\Interop.iTunesLib.dll
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.csproj.ResolveComReference.cache
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.googleOther.resources
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.Jarvis.resources
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.Properties.Resources.resources
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.Search.resources
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.sendMailInput.resources
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.csproj.GenerateResource.Cache
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.exe
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.pdb
+C:\Users\Alex\Documents\Visual Studio 2013\Projects\JARVIS\JARVIS\obj\Debug\JARVIS.csprojResolveAssemblyReference.cache
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\bin\Debug\JARVIS.exe.config
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\Interop.iTunesLib.dll
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.csproj.ResolveComReference.cache
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.exe
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.pdb
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\bin\Debug\JARVIS.exe
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\bin\Debug\JARVIS.pdb
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.csprojResolveAssemblyReference.cache
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.googleOther.resources
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.Jarvis.resources
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.Properties.Resources.resources
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.Search.resources
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.sendMailInput.resources
+C:\Users\Alex\JARVIS\Jarvis\JARVIS\obj\Debug\JARVIS.csproj.GenerateResource.Cache
+C:\Users\Luci\Desktop\Jarvis-master\Jarvis\JARVIS\bin\Debug\JARVIS.exe.config
+C:\Users\Luci\Desktop\Jarvis-master\Jarvis\JARVIS\obj\Debug\JARVIS.csproj.ResolveComReference.cache
+C:\Users\Luci\Desktop\Jarvis-master\Jarvis\JARVIS\obj\Debug\JARVIS.exe
+C:\Users\Luci\Desktop\Jarvis-master\Jarvis\JARVIS\obj\Debug\JARVIS.pdb
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\JARVIS.csproj.ResolveComReference.cache
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\JARVIS.Properties.Resources.resources
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\JARVIS.csproj.GenerateResource.cache
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\JARVIS.csproj.CoreCompileInputs.cache
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\JARVIS.exe
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\JARVIS.pdb
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\bin\Debug\JARVIS.exe.config
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\bin\Debug\JARVIS.exe
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\bin\Debug\JARVIS.pdb
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\JARVIS.csprojAssemblyReference.cache
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\Riff.googleOther.resources
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\Riff.Jarvis.resources
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\Riff.Search.resources
+C:\Users\labhesh.deshpande\Downloads\Jarvis-master\JARVIS\obj\Debug\Riff.sendMailInput.resources
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\JARVIS.csprojAssemblyReference.cache
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\JARVIS.csproj.ResolveComReference.cache
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\Riff.Search.resources
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\JARVIS.csproj.GenerateResource.cache
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\JARVIS.csproj.CoreCompileInputs.cache
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.Integration.Mvc.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.Integration.Mvc.Owin.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.Integration.Owin.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Configuration.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Logging.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Options.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Primitives.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Owin.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Owin.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Buffers.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.ComponentModel.Annotations.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Memory.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.Helpers.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.Mvc.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.Razor.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.WebPages.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.pdb
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.Integration.Mvc.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.Integration.Mvc.Owin.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Autofac.Integration.Owin.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Configuration.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Configuration.Binder.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.DependencyInjection.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Logging.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Options.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Extensions.Primitives.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Microsoft.Owin.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Buffers.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Memory.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.Helpers.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.Mvc.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.Razor.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.WebPages.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\JARVIS.csproj.CopyComplete
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Riff.exe.config
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Riff.exe
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Riff.pdb
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\Riff.Properties.Resources.resources
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\Riff.exe
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\Riff.pdb
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\labhesh.deshpande\Desktop\Riff\JARVIS\obj\Debug\Riff.RiffApplication.resources
