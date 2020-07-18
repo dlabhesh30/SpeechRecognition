@@ -25,7 +25,10 @@ namespace Riff
         #region Private method(s)
         private void CurrentTime()
         {
-            m_speechContext.CurrentTime();
+            var timeString = DateTime.Now.ToShortTimeString();
+            var timePrefix = "The time is: ";
+
+            m_speechContext.Speak(timePrefix, new List<String>() { " <say-as interpret-as=\"time\">" + timeString + "</say-as>" });
         }
         #endregion
 

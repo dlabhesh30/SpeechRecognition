@@ -17,7 +17,7 @@ namespace Riff
         private JObject m_weatherResponseObject = null;
         private string m_latitude = "37.5934";
         private string m_longitude = "-122.0439";
-        private string m_apiKey = "";
+        private string m_apiKey = "4a6e22581624fec26914f50cd6342cee";
         private bool m_weatherDataCached = false;
         private string RequestUrl
         {
@@ -124,9 +124,9 @@ namespace Riff
             weather.AppendLine("It feels like " + weatherModel.FeelsLike + " degree celsius.");
             weather.AppendLine("and Humidity is " + weatherModel.Humidity);
 
-            Thread forecast = new Thread(new ThreadStart(() => m_speechContext.WeatherForecast(weather.ToString())));
-            forecast.IsBackground = true;
-            forecast.Start();
+            var weatherSpeechThread = new Thread(new ThreadStart(() => m_speechContext.Speak(weather.ToString())));
+            weatherSpeechThread.IsBackground = true;
+            weatherSpeechThread.Start();
         }
         #endregion
     }

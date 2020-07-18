@@ -193,3 +193,7 @@ Riff Small
 Riff Come Back
 Riff Normal
 Normal
+
+Battery
+What is the battery 
+How much battery is left

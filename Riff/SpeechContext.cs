@@ -21,7 +21,6 @@ namespace Riff
     {
         #region Private Data
         private SpeechSynthesizer m_speechSynthesizer = null;
-        private int m_originalVolume = 50;
         private SpeechRecognitionEngine m_speechRecognitionEngine = null;
         private List<String> m_grammarPhrases = null;
         private RiffConfigurableSettings m_riffConfigurableSettings = null;
@@ -42,7 +41,7 @@ namespace Riff
             m_riffConfigurableSettings = Bootstrapper.ResolveType<RiffConfigurableSettings>();
 
             SetCustomGrammar();
-            //Set output, load grammar and set up speech recognisition event handler
+            
             m_speechRecognitionEngine.SetInputToDefaultAudioDevice();
             m_speechRecognitionEngine.RecognizeAsync(RecognizeMode.Multiple);
 
@@ -60,18 +59,12 @@ namespace Riff
             }
         }
 
-        public void SetDictationGrammar()
+        public SpeechSynthesizer SpeechSynthesizer
         {
-            var defaultDictationGrammar = new DictationGrammar();
-            defaultDictationGrammar.Name = "default dictation";
-            defaultDictationGrammar.Enabled = true;
-            m_speechRecognitionEngine.LoadGrammar(defaultDictationGrammar);
-        }
-
-        public void SetCustomGrammar()
-        {
-            m_grammarPhrases = getPhrases();
-            m_speechRecognitionEngine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(m_grammarPhrases.ToArray()))));
+            get
+            {
+                return m_speechSynthesizer;
+            }
         }
 
         public void Speak(String phrase, List<String> timeStrings = null)
@@ -93,135 +86,10 @@ namespace Riff
         {
             this.Speak("There is currently no command for this");
         }
-
-        public void AskForFilename()
-        {
-            this.Speak("What file are you looking for?");
-        }
-        
-        public void Appointment(string[] whatToSay)
-        {
-            var date = whatToSay[2].Split('/');
-            var newDate = date[1] + "/" + date[0];
-            var time = whatToSay[3].Split(':');
-            var newTime = time[0] + ":" + time[1];
-            
-            var appointmentText = new StringBuilder();
-            appointmentText.Append("Appointment " + whatToSay[0]);
-            appointmentText.Append(", subject is: " + whatToSay[1]);
-            appointmentText.Append(", at " + whatToSay[3]);
-            appointmentText.Append(", on");
-
-            var timeString = new List<String>(); 
-            timeString.Add("<say-as interpret-as=\"date_md\">" + newDate + "</say-as>");
-            timeString.Add(" <say-as interpret-as=\"time\">" + newTime + "</say-as>");
-
-            this.Speak(appointmentText.ToString(), timeString);
-            
-        }
-
-        public void AppointmentError()
-        {
-            this.Speak("No Appointments found for the next 7 days.");
-        }
-
-        public void SearchFor()
-        {
-            this.Speak("What do you want to search for?");
-        }
-
-        public void CurrentTime()
-        {
-            var timeString = DateTime.Now.ToShortTimeString();
-            var timePrefix = "The time is: ";
-
-            this.Speak(timePrefix, new List<String>() { " <say-as interpret-as=\"time\">" + timeString + "</say-as>" });
-        }
-
-        public void CurrentDate()
-        {
-            string dateString = DateTime.Now.ToShortDateString();
-            var datePrefix = "The date is: ";
-            this.Speak(datePrefix, new List<String>() { " <say-as interpret-as=\"date_md\">" + dateString + "</say-as>" });
-        }
-
-        public void WeatherForecast(string weather)
-        {
-            this.Speak(weather);
-        }
-
-        public void Weather(string weather)
-        {
-            this.Speak(weather);
-        }
-
-        public void Loading()
-        {
-            this.Speak("Loading, Please hang tight");
-        }
-
-        
-        public void Mute(bool mute)
-        {
-            if (mute)
-            {
-                this.Speak("Muting");
-                m_originalVolume = m_speechSynthesizer.Volume;
-                m_speechSynthesizer.Volume = 0;
-            }
-            else
-            {
-                m_speechSynthesizer.Volume = m_originalVolume;
-                m_speechSynthesizer.Speak("Volume levels restored");
-            }
-        }
-
-
-        public void Volume(bool volumeDown)
-        {
-            int volume = m_speechSynthesizer.Volume;
-            if (volumeDown)
-            {
-                if (m_speechSynthesizer.Volume == 0 || (m_speechSynthesizer.Volume - 20) < 0)
-                {
-                    m_speechSynthesizer.Volume = 20;
-                    m_speechSynthesizer.Speak("Shhh...Muted");
-                    m_speechSynthesizer.Volume = 0;
-                }
-                else
-                {
-                    m_speechSynthesizer.Volume -= 20;
-                    m_speechSynthesizer.Speak("Getting quieter, m_volume decreased");
-                }
-            }
-            else
-            {
-                if (m_speechSynthesizer.Volume == 100 || (m_speechSynthesizer.Volume + 20) > 100)
-                {
-                    m_speechSynthesizer.Speak("I am at my max m_volume, I would recommend not trying to go any louder");
-                }
-                else
-                {
-                    m_speechSynthesizer.Volume += 20;
-                    m_speechSynthesizer.Speak("Yes, Volume increased");
-                }
-            }
-        }
-
-        public void TooManyRecipients()
-        {
-            this.Speak("Maximum number of recipients added");
-        }
-
-        public void Closing()
-        {
-            m_speechSynthesizer.SpeakAsyncCancelAll();
-            m_speechSynthesizer.Dispose();
-        }
         #endregion
 
         #region Private method(s)
-        public List<String> getPhrases()
+        private List<String> getPhrases()
         {
             string[] phrases = File.ReadAllLines(m_riffConfigurableSettings.GrammarPath);
             var parsedPhrases = new List<String>();
@@ -237,7 +105,7 @@ namespace Riff
             return parsedPhrases;
         }
 
-        void PopulateAvailableVoices()
+        private void PopulateAvailableVoices()
         {
             m_availableVoices = new Dictionary<AvailableVoices, KeyValuePair<int, string>>();
             m_availableVoices.Add(AvailableVoices.Hayley_en_AU, new KeyValuePair<int, string>(0, "en-AU"));
@@ -247,6 +115,19 @@ namespace Riff
             m_availableVoices.Add(AvailableVoices.Helen_en_US, new KeyValuePair<int, string>(0, "en-US"));
         }
 
+        private void SetDictationGrammar()
+        {
+            var defaultDictationGrammar = new DictationGrammar();
+            defaultDictationGrammar.Name = "default dictation";
+            defaultDictationGrammar.Enabled = true;
+            m_speechRecognitionEngine.LoadGrammar(defaultDictationGrammar);
+        }
+
+        private void SetCustomGrammar()
+        {
+            m_grammarPhrases = getPhrases();
+            m_speechRecognitionEngine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(m_grammarPhrases.ToArray()))));
+        }
         #endregion
     }
 }

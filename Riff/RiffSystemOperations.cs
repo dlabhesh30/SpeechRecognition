@@ -3,6 +3,7 @@ using System.Speech.Recognition;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using System.Speech.Synthesis;
 
 namespace Riff
 {
@@ -11,14 +12,17 @@ namespace Riff
         #region Private Data
         private RiffApplication m_riffWindow = null;
         private Greetings m_greetings = null;
+        private SpeechSynthesizer m_speechSynthesizer = null;
         private System.Windows.Forms.Timer m_stopListeningTimer = null;
         private int m_tickTime = 60;
+        private int m_originalVolume = 50;
         #endregion
 
         #region Constructor(s)
         public RiffSystemOperations()
         {
             m_greetings = Bootstrapper.ResolveType<Greetings>();
+            m_speechSynthesizer = m_speechContext.SpeechSynthesizer;
             m_stopListeningTimer = new System.Windows.Forms.Timer();
             m_stopListeningTimer.Tick += new EventHandler(Tick);
             m_stopListeningTimer.Interval = 1000;
@@ -82,12 +86,48 @@ namespace Riff
         #region Private method(s)
         private void JarvisVolume(bool volumeDown)
         {
-            m_speechContext.Volume(volumeDown);
+            int volume = m_speechSynthesizer.Volume;
+            if (volumeDown)
+            {
+                if (m_speechSynthesizer.Volume == 0 || (m_speechSynthesizer.Volume - 20) < 0)
+                {
+                    m_speechSynthesizer.Volume = 20;
+                    m_speechSynthesizer.Speak("Shhh...Muted");
+                    m_speechSynthesizer.Volume = 0;
+                }
+                else
+                {
+                    m_speechSynthesizer.Volume -= 20;
+                    m_speechSynthesizer.Speak("Getting quieter, m_volume decreased");
+                }
+            }
+            else
+            {
+                if (m_speechSynthesizer.Volume == 100 || (m_speechSynthesizer.Volume + 20) > 100)
+                {
+                    m_speechSynthesizer.Speak("I am at my max m_volume, I would recommend not trying to go any louder");
+                }
+                else
+                {
+                    m_speechSynthesizer.Volume += 20;
+                    m_speechSynthesizer.Speak("Yes, Volume increased");
+                }
+            }
         }
 
         private void JarvisMute(bool mute)
         {
-            m_speechContext.Mute(mute);
+            if (mute)
+            {
+                m_speechContext.Speak("Muting");
+                m_originalVolume = m_speechSynthesizer.Volume;
+                m_speechContext.SpeechSynthesizer.Volume = 0;
+            }
+            else
+            {
+                m_speechContext.SpeechSynthesizer.Volume = m_originalVolume;
+                m_speechSynthesizer.Speak("Volume levels restored");
+            }
         }
 
         private void StopListening()
@@ -103,6 +143,9 @@ namespace Riff
             goodbyeThread.IsBackground = true;
             goodbyeThread.Start();
             goodbyeThread.Join();
+
+            m_speechSynthesizer.SpeakAsyncCancelAll();
+            m_speechSynthesizer.Dispose();
             m_riffWindow.Close();
         }
 

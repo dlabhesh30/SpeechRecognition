@@ -1,12 +1,5 @@
-﻿// MSFT
-using Microsoft.Extensions.Logging;
-using System.Web.Mvc;
-
-// External
+﻿
 using Autofac;
-using Autofac.Integration.Mvc;
-using Owin;
-using System.Speech.Recognition;
 
 namespace Riff
 {
@@ -34,7 +27,7 @@ namespace Riff
             
             builder.RegisterType<SpeechHandlerChain>()
                 .As<SpeechHandlerChain>()
-                .InstancePerDependency();
+                .SingleInstance();
 
             // Injection: Applications
             RegisterApplications(builder);
@@ -47,26 +40,30 @@ namespace Riff
             // Injection: RiffApplication components 
             builder.RegisterType<Greetings>()
                 .As<Greetings>()
-                .InstancePerDependency();
+                .SingleInstance();
 
             builder.RegisterType<Email>()
                 .As<Email>()
-                .InstancePerDependency();
+                .SingleInstance();
 
             builder.RegisterType<Search>()
                 .As<Search>()
-                .InstancePerDependency();
+                .SingleInstance();
 
             builder.RegisterType<Calendar>()
                 .As<Calendar>()
-                .InstancePerDependency();
+                .SingleInstance();
 
             builder.RegisterType<Clock>()
                 .As<Clock>()
-                .InstancePerDependency();
+                .SingleInstance();
 
             builder.RegisterType<Weather>()
                 .As<Weather>()
+                .SingleInstance();
+
+            builder.RegisterType<BatteryStatus>()
+                .As<BatteryStatus>()
                 .InstancePerDependency();
 
             builder.RegisterType<RiffSystemOperations>()

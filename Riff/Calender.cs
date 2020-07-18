@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.Office.Interop.Outlook;
 using System.Threading;
+using System.Text;
+using System.Collections.Generic;
 
 namespace Riff
 {
@@ -59,7 +61,7 @@ namespace Riff
                     {
                         Console.WriteLine("Appointment " + index.ToString());
                         string[] appointmentContent = { index.ToString(), appointment.Subject, appointment.Start.Date.ToString("d"), appointment.Start.TimeOfDay.ToString()};
-                        var sayAppointment = new Thread(new ThreadStart(() => m_speechContext.Appointment(appointmentContent)));
+                        var sayAppointment = new Thread(new ThreadStart(() => Appointment(appointmentContent)));
                         sayAppointment.IsBackground = true;
                         sayAppointment.Start();
                         Thread.Sleep(8000);
@@ -116,14 +118,16 @@ namespace Riff
 
         private void NoAppointments()
         {
-            var noAppointment = new Thread(new ThreadStart(() => m_speechContext.AppointmentError()));
+            var noAppointment = new Thread(new ThreadStart(() => AppointmentError()));
             noAppointment.IsBackground = true;
             noAppointment.Start();
         }
 
         private void CurrentDate()
         {
-            m_speechContext.CurrentDate();
+            string dateString = DateTime.Now.ToShortDateString();
+            var datePrefix = "The date is: ";
+            m_speechContext.Speak(datePrefix, new List<String>() { " <say-as interpret-as=\"date_md\">" + dateString + "</say-as>" });
         }
 
         private void EnsureOutlookIsInitialized()
@@ -137,6 +141,32 @@ namespace Riff
             {
                 m_outlook.OutlookInitialize();
             }
+        }
+
+        private void Appointment(string[] whatToSay)
+        {
+            var date = whatToSay[2].Split('/');
+            var newDate = date[1] + "/" + date[0];
+            var time = whatToSay[3].Split(':');
+            var newTime = time[0] + ":" + time[1];
+
+            var appointmentText = new StringBuilder();
+            appointmentText.Append("Appointment " + whatToSay[0]);
+            appointmentText.Append(", subject is: " + whatToSay[1]);
+            appointmentText.Append(", at " + whatToSay[3]);
+            appointmentText.Append(", on");
+
+            var timeString = new List<String>();
+            timeString.Add("<say-as interpret-as=\"date_md\">" + newDate + "</say-as>");
+            timeString.Add(" <say-as interpret-as=\"time\">" + newTime + "</say-as>");
+
+            m_speechContext.Speak(appointmentText.ToString(), timeString);
+
+        }
+
+        private void AppointmentError()
+        {
+            m_speechContext.Speak("No Appointments found for the next 7 days.");
         }
         #endregion
     }
