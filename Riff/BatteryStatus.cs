@@ -90,7 +90,7 @@ namespace Riff
 
         private void BatteryStatusCheckScheduler()
         {
-            System.Timers.Timer timer = new System.Timers.Timer(TimeSpan.FromSeconds(10).TotalMilliseconds);
+            System.Timers.Timer timer = new System.Timers.Timer(TimeSpan.FromMinutes(5).TotalMilliseconds);
             timer.AutoReset = true;
             timer.Elapsed += new System.Timers.ElapsedEventHandler(OnBatteryStatusCheckInvoked);
             timer.Start();
