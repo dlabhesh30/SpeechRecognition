@@ -57,6 +57,8 @@ namespace Riff
                         batteryStatus == BatteryChargeStatus.Unknown ||
                         batteryStatus == BatteryChargeStatus.NoSystemBattery ||
                         batteryStatus == BatteryChargeStatus.High ||
+                        batteryStatus == (BatteryChargeStatus.Low | BatteryChargeStatus.Charging) ||
+                        batteryStatus == (BatteryChargeStatus.Low | BatteryChargeStatus.Critical | BatteryChargeStatus.Charging) ||
                         batteryStatus == 0)
                     {
                         result = "";
@@ -80,10 +82,13 @@ namespace Riff
             m_powerStatusMap = new Dictionary<BatteryChargeStatus, string>();
             m_powerStatusMap.Add(BatteryChargeStatus.Charging, "Plugged in, charging now.");
             m_powerStatusMap.Add(BatteryChargeStatus.Low, "Battery low, I recommed you find a charging spot.");
+            m_powerStatusMap.Add(BatteryChargeStatus.Low | BatteryChargeStatus.Charging, "Battery low, charging up now");
             m_powerStatusMap.Add(0, "Battery is good for now.");
             m_powerStatusMap.Add(BatteryChargeStatus.High, "Battery high.");
             m_powerStatusMap.Add(BatteryChargeStatus.High | BatteryChargeStatus.Charging, "Battery high, feel free to remove the charger.");
             m_powerStatusMap.Add(BatteryChargeStatus.Critical, "Battery critical, just plug in the charger already.");
+            m_powerStatusMap.Add(BatteryChargeStatus.Critical | BatteryChargeStatus.Charging, "Battery critical, charging up now.");
+            m_powerStatusMap.Add(BatteryChargeStatus.Low | BatteryChargeStatus.Critical | BatteryChargeStatus.Charging, "Battery Critical, charging up now");
             m_powerStatusMap.Add(BatteryChargeStatus.NoSystemBattery, "No battery detected.");
             m_powerStatusMap.Add(BatteryChargeStatus.Unknown, "Battery status unknown.");
         }
