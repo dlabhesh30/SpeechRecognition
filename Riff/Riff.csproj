@@ -104,6 +104,7 @@
     <Compile Include="Calender.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="Email.cs" />
+    <Compile Include="GrammarContext.cs" />
     <Compile Include="Riff.cs">
       <SubType>Form</SubType>
     </Compile>

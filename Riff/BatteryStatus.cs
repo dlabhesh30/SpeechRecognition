@@ -30,6 +30,10 @@ namespace Riff
             {
                 CurrentBatteryStatus();
             }
+            else
+            {
+                this.PassRequestHandling(speech);
+            }
         }
         #endregion
 

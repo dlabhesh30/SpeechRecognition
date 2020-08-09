@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Speech.Recognition;
 using System.Speech.Synthesis;
-using System.Text;
 
 namespace Riff
 {
@@ -22,11 +20,9 @@ namespace Riff
         #region Private Data
         private SpeechSynthesizer m_speechSynthesizer = null;
         private SpeechRecognitionEngine m_speechRecognitionEngine = null;
-        private List<String> m_grammarPhrases = null;
-        private RiffConfigurableSettings m_riffConfigurableSettings = null;
         private CultureInfo m_cultureInfo = null;
-        Dictionary<AvailableVoices, KeyValuePair<int, string>> m_availableVoices;
-        
+        private GrammarContext m_grammarContext = null;
+        private Dictionary<AvailableVoices, KeyValuePair<int, string>> m_availableVoices;
         #endregion
 
         #region Constructor(s)
@@ -37,8 +33,7 @@ namespace Riff
             m_speechSynthesizer = new SpeechSynthesizer();
             m_speechRecognitionEngine = new SpeechRecognitionEngine();
             m_cultureInfo = new CultureInfo(voice.Value, true);
-            m_grammarPhrases = new List<String>();
-            m_riffConfigurableSettings = Bootstrapper.ResolveType<RiffConfigurableSettings>();
+            m_grammarContext = Bootstrapper.ResolveType<GrammarContext>();
 
             SetCustomGrammar();
             
@@ -89,22 +84,6 @@ namespace Riff
         #endregion
 
         #region Private method(s)
-        private List<String> getPhrases()
-        {
-            string[] phrases = File.ReadAllLines(m_riffConfigurableSettings.GrammarPath);
-            var parsedPhrases = new List<String>();
-            foreach (string phrase in phrases)
-            {
-                if (phrase != string.Empty)
-                {
-                    parsedPhrases.Add(phrase);
-                    continue;
-                }
-                parsedPhrases.Add("Empty");
-            }
-            return parsedPhrases;
-        }
-
         private void PopulateAvailableVoices()
         {
             m_availableVoices = new Dictionary<AvailableVoices, KeyValuePair<int, string>>();
@@ -125,8 +104,8 @@ namespace Riff
 
         private void SetCustomGrammar()
         {
-            m_grammarPhrases = getPhrases();
-            m_speechRecognitionEngine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(m_grammarPhrases.ToArray()))));
+            var grammar = m_grammarContext.getPhrases().ToArray();
+            m_speechRecognitionEngine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(grammar))));
         }
         #endregion
     }

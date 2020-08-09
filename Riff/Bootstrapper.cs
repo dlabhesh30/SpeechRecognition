@@ -36,7 +36,12 @@ namespace Riff
             builder.RegisterType<WebRequest>()
                 .As<WebRequest>()
                 .InstancePerDependency();
-            
+
+            // Injection: Grammar
+            builder.RegisterType<GrammarContext>()
+                .As<GrammarContext>()
+                .InstancePerDependency();
+
             // Injection: RiffApplication components 
             builder.RegisterType<Greetings>()
                 .As<Greetings>()
