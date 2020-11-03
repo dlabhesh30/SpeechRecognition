@@ -24,11 +24,7 @@ namespace Riff
             builder.RegisterType<SpeechContext>()
                 .As<SpeechContext>()
                 .SingleInstance();
-
-            builder.RegisterType<GrammarContext>()
-                .As<GrammarContext>()
-                .SingleInstance();
-
+            
             builder.RegisterType<MicrophoneContext>()
                 .As<MicrophoneContext>()
                 .SingleInstance();

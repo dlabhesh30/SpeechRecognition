@@ -166,7 +166,6 @@
     <Compile Include="Calender.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="Email.cs" />
-    <Compile Include="GrammarContext.cs" />
     <Compile Include="GoogleRecognitionEngineProvider.cs" />
     <Compile Include="AbstractRecognitionEngineProvider.cs" />
     <Compile Include="MicrophoneContext.cs" />
@@ -274,7 +273,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>echo F|xcopy /S /Q /Y /F "$(ProjectDir)Resources\Grammar.txt" "$(TargetDir)\Grammar.txt"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Grpc.Core.2.27.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.27.0\build\net45\Grpc.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

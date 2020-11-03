@@ -13,7 +13,6 @@ namespace Riff
     public partial class RiffApplication : Form
     {
         #region Private Data
-        private List<String> m_grammarPhrases = null;
         private RiffSystemOperations m_riffSystemOperations = null;
         private Greetings m_greetings = null;
         private SpeechHandlerChain m_speechHandlerChain = null;
