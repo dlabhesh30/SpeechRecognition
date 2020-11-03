@@ -132,7 +132,6 @@ namespace Riff
 
         private void StopListening()
         {
-            m_speechContext.SpeechEngine.RecognizeAsyncStop();
             Console.WriteLine("Not Listening");
             m_stopListeningTimer.Start();
         }
@@ -155,7 +154,6 @@ namespace Riff
             Console.WriteLine(m_tickTime.ToString());
             if (m_tickTime == 0)
             {
-                m_speechContext.SpeechEngine.RecognizeAsync(RecognizeMode.Multiple);
                 Console.WriteLine("You may Speak");
                 m_stopListeningTimer.Stop();
             }

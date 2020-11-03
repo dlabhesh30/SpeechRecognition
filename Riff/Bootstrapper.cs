@@ -20,28 +20,41 @@ namespace Riff
                 .As<RiffConfigurableSettings>()
                 .SingleInstance();
             
-            // Injection: Speech Context 
+            // Injection: Context(s) 
             builder.RegisterType<SpeechContext>()
                 .As<SpeechContext>()
                 .SingleInstance();
-            
+
+            builder.RegisterType<GrammarContext>()
+                .As<GrammarContext>()
+                .SingleInstance();
+
+            builder.RegisterType<MicrophoneContext>()
+                .As<MicrophoneContext>()
+                .SingleInstance();
+
             builder.RegisterType<SpeechHandlerChain>()
                 .As<SpeechHandlerChain>()
                 .SingleInstance();
 
-            // Injection: Applications
-            RegisterApplications(builder);
+            // Injection: RecognitionEngineProvider
+            builder.RegisterType<GoogleRecognitionEngineProvider>()
+                .As<IRecognitionEngineProvider>()
+                .InstancePerDependency();
 
             // Injection: WebRequest
             builder.RegisterType<WebRequest>()
                 .As<WebRequest>()
                 .InstancePerDependency();
 
-            // Injection: Grammar
-            builder.RegisterType<GrammarContext>()
-                .As<GrammarContext>()
-                .InstancePerDependency();
+            // Injection: System operations
+            builder.RegisterType<RiffSystemOperations>()
+               .As<RiffSystemOperations>()
+               .SingleInstance();
 
+            // Injection: Applications
+            RegisterApplications(builder);
+           
             // Injection: RiffApplication components 
             builder.RegisterType<Greetings>()
                 .As<Greetings>()
@@ -70,10 +83,6 @@ namespace Riff
             builder.RegisterType<BatteryStatus>()
                 .As<BatteryStatus>()
                 .InstancePerDependency();
-
-            builder.RegisterType<RiffSystemOperations>()
-                .As<RiffSystemOperations>()
-                .SingleInstance();
             
             // Injection: Build container / integrate with MVC
             m_appContainer = builder.Build();

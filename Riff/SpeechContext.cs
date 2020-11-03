@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Speech.Recognition;
 using System.Speech.Synthesis;
 
 namespace Riff
@@ -19,9 +18,7 @@ namespace Riff
     {
         #region Private Data
         private SpeechSynthesizer m_speechSynthesizer = null;
-        private SpeechRecognitionEngine m_speechRecognitionEngine = null;
         private CultureInfo m_cultureInfo = null;
-        private GrammarContext m_grammarContext = null;
         private Dictionary<AvailableVoices, KeyValuePair<int, string>> m_availableVoices;
         #endregion
 
@@ -31,29 +28,12 @@ namespace Riff
             PopulateAvailableVoices();
             var voice = m_availableVoices[AvailableVoices.Helen_en_US];
             m_speechSynthesizer = new SpeechSynthesizer();
-            m_speechRecognitionEngine = new SpeechRecognitionEngine();
             m_cultureInfo = new CultureInfo(voice.Value, true);
-            m_grammarContext = Bootstrapper.ResolveType<GrammarContext>();
-
-            SetCustomGrammar();
-            
-            m_speechRecognitionEngine.SetInputToDefaultAudioDevice();
-            m_speechRecognitionEngine.RecognizeAsync(RecognizeMode.Multiple);
-
             m_speechSynthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult, voice.Key, m_cultureInfo);
         }
         #endregion
 
         #region Public method(s)
-
-        public SpeechRecognitionEngine SpeechEngine
-        {
-            get
-            {
-                return m_speechRecognitionEngine;
-            }
-        }
-
         public SpeechSynthesizer SpeechSynthesizer
         {
             get
@@ -92,20 +72,6 @@ namespace Riff
             m_availableVoices.Add(AvailableVoices.Hazel_en_GB, new KeyValuePair<int, string>(0, "en-GB"));
             m_availableVoices.Add(AvailableVoices.ZiraPro_en_US, new KeyValuePair<int, string>(2, "en-US"));
             m_availableVoices.Add(AvailableVoices.Helen_en_US, new KeyValuePair<int, string>(0, "en-US"));
-        }
-
-        private void SetDictationGrammar()
-        {
-            var defaultDictationGrammar = new DictationGrammar();
-            defaultDictationGrammar.Name = "default dictation";
-            defaultDictationGrammar.Enabled = true;
-            m_speechRecognitionEngine.LoadGrammar(defaultDictationGrammar);
-        }
-
-        private void SetCustomGrammar()
-        {
-            var grammar = m_grammarContext.getPhrases().ToArray();
-            m_speechRecognitionEngine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(grammar))));
         }
         #endregion
     }

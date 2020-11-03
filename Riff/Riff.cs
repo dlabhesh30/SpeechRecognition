@@ -18,6 +18,7 @@ namespace Riff
         private Greetings m_greetings = null;
         private SpeechHandlerChain m_speechHandlerChain = null;
         private SpeechContext m_speechContext = null;
+        private IRecognitionEngineProvider m_speechRecognitionEngine = null;
         #endregion
 
         #region Constructor(s)
@@ -25,14 +26,13 @@ namespace Riff
         {
             Initialize();
             LoadUpWelcome();
+            StartRecognizing();
         }
         #endregion
 
         #region Private method(s)
         private void Initialize()
         {
-            m_grammarPhrases = new List<String>();
-
             ResovleTypes();
             InitializeComponent();
 
@@ -41,9 +41,6 @@ namespace Riff
             m_riffSystemOperations.SetApplicationWindow(this);
             m_riffSystemOperations.Minimize();
             this.FormBorderStyle = FormBorderStyle.None;
-
-            //Set up speech recognisition event handler
-            m_speechContext.SpeechEngine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(RecognizeSpeech);
         }
 
         private void ResovleTypes()
@@ -52,13 +49,18 @@ namespace Riff
             m_greetings = Bootstrapper.ResolveType<Greetings>();
             m_speechHandlerChain = Bootstrapper.ResolveType<SpeechHandlerChain>();
             m_speechContext = Bootstrapper.ResolveType<SpeechContext>();
+            m_speechRecognitionEngine = Bootstrapper.ResolveType<IRecognitionEngineProvider>();
         }
 
-        private void RecognizeSpeech(object sender, SpeechRecognizedEventArgs e)
+        private void StartRecognizing()
         {
-            var speech = e.Result.Text;
-            Console.WriteLine(speech);
-            m_speechHandlerChain.HandleSpeechRequest(speech);
+            var speecRecognitionThread = new Thread(() =>
+            {
+                var result = m_speechRecognitionEngine.RecognizeSpeech().Result;
+            });
+            speecRecognitionThread.IsBackground = true;
+            speecRecognitionThread.Start();
+            
         }
         #endregion
 
