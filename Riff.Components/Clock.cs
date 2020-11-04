@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Riff.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Timers;
 
 namespace Riff
 {
-    class Clock : SpeechHandler
+    public class Clock : AbstractSpeechHandler
     {
 
         #region Private Data
@@ -16,7 +17,8 @@ namespace Riff
         string m_timerIntervalType = "";
         #endregion
 
-        public Clock()
+        public Clock(ISpeechContext speechContext)
+            : base(speechContext)
         {
             m_timer = new System.Timers.Timer();
             m_timer.Enabled = false;

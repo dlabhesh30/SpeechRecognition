@@ -114,16 +114,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications\AbstractApplicationContext.cs" />
-    <Compile Include="Applications\Chrome.cs" />
-    <Compile Include="Applications\Outlook.cs" />
-    <Compile Include="Applications\Slack.cs" />
-    <Compile Include="Applications\Word.cs" />
-    <Compile Include="BatteryStatus.cs" />
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Calender.cs" />
-    <Compile Include="Clock.cs" />
-    <Compile Include="Email.cs" />
     <Compile Include="MicrophoneContext.cs" />
     <Compile Include="Riff.cs">
       <SubType>Form</SubType>
@@ -135,18 +126,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RiffConfigurableSettings.cs" />
     <Compile Include="RiffSystemOperations.cs" />
-    <Compile Include="Search.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Search.Designer.cs">
-      <DependentUpon>Search.cs</DependentUpon>
-    </Compile>
     <Compile Include="SpeechContext.cs" />
     <Compile Include="SpeechHandler.cs" />
     <Compile Include="SpeechHandlerChain.cs" />
-    <Compile Include="Weather.cs" />
-    <Compile Include="Greetings.cs" />
-    <Compile Include="WeatherModel.cs" />
     <EmbeddedResource Include="Riff.resx">
       <DependentUpon>Riff.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,9 +142,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Search.resx">
-      <DependentUpon>Search.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -227,6 +206,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Riff.Components\Riff.Components.csproj">
+      <Project>{f25839f9-1697-41c2-8900-84c321ae9f34}</Project>
+      <Name>Riff.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Riff.Framework\Riff.Framework.csproj">
       <Project>{b8bfb856-6102-42c4-8ea1-c8c6de1b17fa}</Project>
       <Name>Riff.Framework</Name>

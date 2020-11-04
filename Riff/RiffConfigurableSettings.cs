@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
+using Riff.Framework;
 
 namespace Riff
 {
-    public class RiffConfigurableSettings
+    public class RiffConfigurableSettings : IRiffConfigurableSettings
     {
         #region Private Data
         private IDictionary<String, String> m_supportedApplications = null;
@@ -25,12 +26,9 @@ namespace Riff
         #endregion
 
         #region Public methods
-        public IDictionary<String, String> SupportedApplications
+        public IDictionary<String, String> SupportedApplications()
         {
-            get
-            {
-                return m_supportedApplications;
-            }
+            return m_supportedApplications;
         }
         #endregion
     }

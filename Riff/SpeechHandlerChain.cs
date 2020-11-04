@@ -17,7 +17,6 @@ namespace Riff
         private Calendar m_calendar = null;
         private Clock m_clock = null;
         private Weather m_weather = null;
-        private Search m_search = null;
         private RiffSystemOperations m_riffSystemOperations = null;
         private BatteryStatus m_batteryStatus = null;
         private Outlook m_outlook = null;
@@ -60,7 +59,6 @@ namespace Riff
             m_email = Bootstrapper.ResolveType<Email>();
             m_calendar = Bootstrapper.ResolveType<Calendar>();
             m_greetings = Bootstrapper.ResolveType<Greetings>();
-            m_search = Bootstrapper.ResolveType<Search>();
             m_riffSystemOperations = Bootstrapper.ResolveType<RiffSystemOperations>();
             m_clock = Bootstrapper.ResolveType<Clock>();
             m_outlook = Bootstrapper.ResolveType<Outlook>();

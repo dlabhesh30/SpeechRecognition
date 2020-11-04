@@ -3,10 +3,11 @@ using Microsoft.Office.Interop.Outlook;
 using System.Threading;
 using System.Text;
 using System.Collections.Generic;
+using Riff.Framework;
 
 namespace Riff
 {
-    public class Calendar : SpeechHandler
+    public class Calendar : AbstractSpeechHandler
     {
         #region Private Data
         private Outlook m_outlook = null;
@@ -14,9 +15,10 @@ namespace Riff
         #endregion
 
         #region Constructor(s)
-        public Calendar()
+        public Calendar(ISpeechContext speechContext, Outlook outlook)
+            : base(speechContext)
         {
-            m_outlook = Bootstrapper.ResolveType<Outlook>();
+            m_outlook = outlook;
         }
         #endregion
 

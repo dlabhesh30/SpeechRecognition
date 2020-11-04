@@ -4,10 +4,11 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
+using Riff.Framework;
 
 namespace Riff
 {
-    abstract public class AbstractApplicationContext : SpeechHandler
+    abstract public class AbstractApplicationContext : AbstractSpeechHandler
     {
         #region Protected Data
         protected string m_applicationName = "";
@@ -36,9 +37,10 @@ namespace Riff
         #endregion
 
         #region Constructor(s)
-        public AbstractApplicationContext()
+        public AbstractApplicationContext(IRiffConfigurableSettings riffConfigurableSettings, ISpeechContext speechContext)
+            : base(speechContext)
         {
-            m_supportedApplications = Bootstrapper.ResolveType<RiffConfigurableSettings>().SupportedApplications;
+            m_supportedApplications = riffConfigurableSettings.SupportedApplications();
             m_alternateApplicationAlias = new List<string>();
         }
         #endregion

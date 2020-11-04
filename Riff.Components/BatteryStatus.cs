@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Riff.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Timers;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Riff
 {
-    class BatteryStatus : SpeechHandler
+    public class BatteryStatus : AbstractSpeechHandler
     {
         #region Private Data
         private PowerStatus m_powerStatus = null;
@@ -15,7 +16,8 @@ namespace Riff
         #endregion
 
         #region Constructor(s)
-        public BatteryStatus()
+        public BatteryStatus(ISpeechContext speechContext)
+            : base(speechContext)
         {
             m_powerStatus = SystemInformation.PowerStatus;
             PopulatePowerStatusMap();

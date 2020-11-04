@@ -5,8 +5,6 @@ using System.Text;
 using System.Diagnostics;
 using Microsoft.Office.Interop.Outlook;
 using System.Threading.Tasks;
-using System.Speech.Synthesis;
-using System.Speech.Recognition;
 using System.IO;
 using System.Threading;
 

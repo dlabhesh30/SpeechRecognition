@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Riff.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ namespace Riff
 {
     public class Chrome : AbstractApplicationContext
     {
-        public Chrome()
+        public Chrome(IRiffConfigurableSettings riffConfigurableSettings, ISpeechContext speechContext)
+            : base(riffConfigurableSettings, speechContext)
         {
             m_applicationName = "Chrome";
             this.SetApplicationPath();

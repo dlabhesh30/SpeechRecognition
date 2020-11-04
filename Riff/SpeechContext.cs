@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Speech.Synthesis;
 
+using Riff.Framework;
+
 namespace Riff
 {
     enum AvailableVoices
@@ -14,7 +16,7 @@ namespace Riff
         Heather_en_CA
     };
 
-    public class SpeechContext
+    public class SpeechContext : ISpeechContext
     {
         #region Private Data
         private SpeechSynthesizer m_speechSynthesizer = null;
@@ -34,12 +36,9 @@ namespace Riff
         #endregion
 
         #region Public method(s)
-        public SpeechSynthesizer SpeechSynthesizer
+        public SpeechSynthesizer SpeechSynthesizer()
         {
-            get
-            {
-                return m_speechSynthesizer;
-            }
+            return m_speechSynthesizer;
         }
 
         public void Speak(String phrase, List<String> timeStrings = null)

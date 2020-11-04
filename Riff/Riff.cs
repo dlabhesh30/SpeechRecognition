@@ -17,7 +17,7 @@ namespace Riff
         private RiffSystemOperations m_riffSystemOperations = null;
         private Greetings m_greetings = null;
         private ISpeechHandlerChain m_speechHandlerChain = null;
-        private SpeechContext m_speechContext = null;
+        private ISpeechContext m_speechContext = null;
         private IRecognitionEngineProvider m_speechRecognitionEngine = null;
         #endregion
 
@@ -48,7 +48,7 @@ namespace Riff
             m_riffSystemOperations = Bootstrapper.ResolveType<RiffSystemOperations>();
             m_greetings = Bootstrapper.ResolveType<Greetings>();
             m_speechHandlerChain = Bootstrapper.ResolveType<ISpeechHandlerChain>();
-            m_speechContext = Bootstrapper.ResolveType<SpeechContext>();
+            m_speechContext = Bootstrapper.ResolveType<ISpeechContext>();
             m_speechRecognitionEngine = Bootstrapper.ResolveType<IRecognitionEngineProvider>();
         }
 

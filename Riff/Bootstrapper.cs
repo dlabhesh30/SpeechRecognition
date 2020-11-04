@@ -17,16 +17,18 @@ namespace Riff
             // Injection: Controller Registration
             var builder = new ContainerBuilder();
 
-            // Injection: Config
-            builder.RegisterType<RiffConfigurableSettings>()
-                .As<RiffConfigurableSettings>()
-                .SingleInstance();
-            
             // Injection: Context(s) 
-            builder.RegisterType<SpeechContext>()
-                .As<SpeechContext>()
+            var speechContext = new SpeechContext();
+            builder.RegisterInstance(speechContext)
+                .As<ISpeechContext>()
                 .SingleInstance();
-            
+
+            // Injection: Config
+            var riffConfigurableSettings = new RiffConfigurableSettings();
+            builder.RegisterInstance(riffConfigurableSettings)
+                .As<IRiffConfigurableSettings>()
+                .SingleInstance();
+
             builder.RegisterType<MicrophoneContext>()
                 .As<IMicrophoneContext>()
                 .SingleInstance();
@@ -41,9 +43,10 @@ namespace Riff
                 .InstancePerDependency();
 
             // Injection: WebRequest
-            builder.RegisterType<WebRequest>()
+            var webRequest = new WebRequest();
+            builder.RegisterInstance(webRequest)
                 .As<WebRequest>()
-                .InstancePerDependency();
+                .SingleInstance();
 
             // Injection: System operations
             builder.RegisterType<RiffSystemOperations>()
@@ -51,35 +54,37 @@ namespace Riff
                .SingleInstance();
 
             // Injection: Applications
-            RegisterApplications(builder);
-           
+            RegisterApplications(builder, riffConfigurableSettings, speechContext);
+
             // Injection: RiffApplication components 
             builder.RegisterType<Greetings>()
                 .As<Greetings>()
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .SingleInstance();
 
             builder.RegisterType<Email>()
                 .As<Email>()
                 .SingleInstance();
 
-            builder.RegisterType<Search>()
+            /*builder.RegisterType<Search>()
                 .As<Search>()
                 .SingleInstance();
-
-            builder.RegisterType<Calendar>()
-                .As<Calendar>()
-                .SingleInstance();
-
+                */
+                
             builder.RegisterType<Clock>()
                 .As<Clock>()
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .SingleInstance();
 
             builder.RegisterType<Weather>()
                 .As<Weather>()
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
+                .WithParameter(new TypedParameter(typeof(WebRequest), webRequest))
                 .SingleInstance();
 
             builder.RegisterType<BatteryStatus>()
                 .As<BatteryStatus>()
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .InstancePerDependency();
             
             // Injection: Build container / integrate with MVC
@@ -95,23 +100,40 @@ namespace Riff
         #endregion
 
         #region Private Methods
-        private static void RegisterApplications(ContainerBuilder builder)
+        private static void RegisterApplications(ContainerBuilder builder, 
+            IRiffConfigurableSettings riffConfigurableSettings, 
+            ISpeechContext speechContext)
         {
             builder.RegisterType<Chrome>()
-                .As<AbstractApplicationContext>()
+                .As<Chrome>()
+                .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .AsSelf();
-
-            builder.RegisterType<Outlook>()
-                .As<AbstractApplicationContext>()
-                .AsSelf();
-
+             
             builder.RegisterType<Word>()
-                .As<AbstractApplicationContext>()
+                .As<Word>()
+                .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .AsSelf();
 
             builder.RegisterType<Slack>()
-                .As<AbstractApplicationContext>()
+                .As<Slack>()
+                .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .AsSelf();
+
+            var outlook = new Outlook(riffConfigurableSettings, speechContext);
+            builder.RegisterInstance(outlook)
+                .As<Outlook>()
+                .AsSelf();
+
+            builder.RegisterType<Calendar>()
+                .As<Calendar>()
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
+                .WithParameter(new TypedParameter(typeof(Outlook), outlook))
+                .SingleInstance();
+
+            //  m_appContainer = builder.Build();
         }
         #endregion
 

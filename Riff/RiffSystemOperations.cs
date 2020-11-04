@@ -4,10 +4,11 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
+using Riff.Framework;
 
 namespace Riff
 {
-    public class RiffSystemOperations : SpeechHandler
+    public class RiffSystemOperations : AbstractSpeechHandler
     {
         #region Private Data
         private RiffApplication m_riffWindow = null;
@@ -19,10 +20,11 @@ namespace Riff
         #endregion
 
         #region Constructor(s)
-        public RiffSystemOperations()
+        public RiffSystemOperations(ISpeechContext speechContext)
+            : base(speechContext)
         {
             m_greetings = Bootstrapper.ResolveType<Greetings>();
-            m_speechSynthesizer = m_speechContext.SpeechSynthesizer;
+            m_speechSynthesizer = m_speechContext.SpeechSynthesizer();
             m_stopListeningTimer = new System.Windows.Forms.Timer();
             m_stopListeningTimer.Tick += new EventHandler(Tick);
             m_stopListeningTimer.Interval = 1000;
@@ -121,11 +123,11 @@ namespace Riff
             {
                 m_speechContext.Speak("Muting");
                 m_originalVolume = m_speechSynthesizer.Volume;
-                m_speechContext.SpeechSynthesizer.Volume = 0;
+                m_speechContext.SpeechSynthesizer().Volume = 0;
             }
             else
             {
-                m_speechContext.SpeechSynthesizer.Volume = m_originalVolume;
+                m_speechContext.SpeechSynthesizer().Volume = m_originalVolume;
                 m_speechSynthesizer.Speak("Volume levels restored");
             }
         }

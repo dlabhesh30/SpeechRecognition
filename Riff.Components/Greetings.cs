@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Riff.Framework;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
 namespace Riff
 {
-    public class Greetings : SpeechHandler
+    public class Greetings : AbstractSpeechHandler
     {
         #region Private Data        
         private Random m_random;
@@ -17,7 +18,8 @@ namespace Riff
         #endregion
 
         #region Constructor(s)   
-        public Greetings()
+        public Greetings(ISpeechContext speechContext)
+            : base(speechContext)
         {
             PopulateWelcomeGreetings();
             PopulateExitGreetings();

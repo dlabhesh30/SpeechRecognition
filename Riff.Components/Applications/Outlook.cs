@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Diagnostics;
 using Microsoft.Office.Interop.Outlook;
-using System.Speech.Synthesis;
+using Riff.Framework;
 
 namespace Riff
 {
-    class Outlook : AbstractApplicationContext
+    public class Outlook : AbstractApplicationContext
     {
         #region Private Data
         private Application m_outlookApp;
@@ -18,7 +18,8 @@ namespace Riff
         #endregion
 
         #region Constructor(s)
-        public Outlook()
+        public Outlook(IRiffConfigurableSettings riffConfigurableSettings, ISpeechContext speechContext)
+            : base(riffConfigurableSettings, speechContext)
         {
             m_applicationName = "Outlook";
             this.SetApplicationPath();
