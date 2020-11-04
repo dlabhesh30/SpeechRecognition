@@ -1,10 +1,11 @@
 ﻿using System.Collections.Concurrent;
 using Google.Protobuf;
 using NAudio.Wave;
+using Riff.Framework;
 
 namespace Riff
 {
-    public class MicrophoneContext
+    public class MicrophoneContext : IMicrophoneContext
     {
         #region Private data
         private const int m_sampleRate = 16000;
@@ -12,7 +13,7 @@ namespace Riff
         private const int m_bytesPerSample = 2;
         private readonly BlockingCollection<ByteString> m_unprocessedMicrophoneBuffer;
         #endregion
-
+        
         #region Contructor(s)
         public MicrophoneContext()
         {
@@ -34,36 +35,24 @@ namespace Riff
             return waveIn;
         }
 
-        public BlockingCollection<ByteString> UnprocessedMicrophoneBuffer
+        public BlockingCollection<ByteString> UnprocessedMicrophoneBuffer()
         {
-            get
-            {
-                return m_unprocessedMicrophoneBuffer;
-            }
+            return m_unprocessedMicrophoneBuffer;
         }
 
-        public int SampleRate
+        public int SampleRate()
         {
-            get
-            {
-                return m_sampleRate;
-            }
+            return m_sampleRate;
         }
 
-        public int ChannelCount
+        public int ChannelCount()
         {
-            get
-            {
-                return m_channelCount;
-            }
+            return m_channelCount;
         }
 
-        public int BytesPerSample
+        public int BytesPerSample()
         {
-            get
-            {
-                return m_bytesPerSample;
-            }
+            return m_bytesPerSample;
         }
         #endregion
     }

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Collections.Generic;
+using Riff.Framework;
 
 namespace Riff
 {
@@ -15,7 +16,7 @@ namespace Riff
         #region Private Data
         private RiffSystemOperations m_riffSystemOperations = null;
         private Greetings m_greetings = null;
-        private SpeechHandlerChain m_speechHandlerChain = null;
+        private ISpeechHandlerChain m_speechHandlerChain = null;
         private SpeechContext m_speechContext = null;
         private IRecognitionEngineProvider m_speechRecognitionEngine = null;
         #endregion
@@ -46,7 +47,7 @@ namespace Riff
         {
             m_riffSystemOperations = Bootstrapper.ResolveType<RiffSystemOperations>();
             m_greetings = Bootstrapper.ResolveType<Greetings>();
-            m_speechHandlerChain = Bootstrapper.ResolveType<SpeechHandlerChain>();
+            m_speechHandlerChain = Bootstrapper.ResolveType<ISpeechHandlerChain>();
             m_speechContext = Bootstrapper.ResolveType<SpeechContext>();
             m_speechRecognitionEngine = Bootstrapper.ResolveType<IRecognitionEngineProvider>();
         }

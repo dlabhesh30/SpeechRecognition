@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Riff.Framework;
 
 namespace Riff
 {
-    public class SpeechHandlerChain
+    public class SpeechHandlerChain : ISpeechHandlerChain
     {
 
         #region Private Data
@@ -48,7 +49,7 @@ namespace Riff
 
         public void HandleSpeechRequest(string speech)
         {
-            m_greetings.HandleSpeechRequest(speech.ToUpper());
+            m_greetings.HandleSpeechRequest(speech.ToUpper().Trim());
         }
         #endregion
 

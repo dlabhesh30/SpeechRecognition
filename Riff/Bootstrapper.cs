@@ -1,5 +1,7 @@
 ﻿
 using Autofac;
+using Riff.Framework;
+using Riff.RecognitionProvider;
 
 namespace Riff
 {
@@ -26,11 +28,11 @@ namespace Riff
                 .SingleInstance();
             
             builder.RegisterType<MicrophoneContext>()
-                .As<MicrophoneContext>()
+                .As<IMicrophoneContext>()
                 .SingleInstance();
 
             builder.RegisterType<SpeechHandlerChain>()
-                .As<SpeechHandlerChain>()
+                .As<ISpeechHandlerChain>()
                 .SingleInstance();
 
             // Injection: RecognitionEngineProvider
