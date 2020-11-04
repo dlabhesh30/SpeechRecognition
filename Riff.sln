@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riff.Framework", "Riff.Fram
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riff.RecognitionProvider", "Riff.RecognitionProvider\Riff.RecognitionProvider.csproj", "{E397C974-9F11-442D-AF76-A66CF1EF1198}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riff.Components", "Riff.Components\Riff.Components.csproj", "{F25839F9-1697-41C2-8900-84C321AE9F34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{E397C974-9F11-442D-AF76-A66CF1EF1198}.Release|x64.Build.0 = Release|Any CPU
 		{E397C974-9F11-442D-AF76-A66CF1EF1198}.Release|x86.ActiveCfg = Release|Any CPU
 		{E397C974-9F11-442D-AF76-A66CF1EF1198}.Release|x86.Build.0 = Release|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Debug|x64.Build.0 = Debug|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Debug|x86.Build.0 = Debug|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Release|x64.ActiveCfg = Release|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Release|x64.Build.0 = Release|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Release|x86.ActiveCfg = Release|Any CPU
+		{F25839F9-1697-41C2-8900-84C321AE9F34}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
