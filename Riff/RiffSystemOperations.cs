@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Speech.Recognition;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;

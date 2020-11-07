@@ -5,7 +5,7 @@ using System.Speech.Synthesis;
 
 using Riff.Framework;
 
-namespace Riff
+namespace Riff.RecognitionProvider
 {
     enum AvailableVoices
     {

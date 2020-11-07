@@ -1,12 +1,6 @@
-﻿using System;
-using System.Windows.Forms;
-using System.Speech.Recognition;
-using System.IO;
-using System.Diagnostics;
+﻿using System.Windows.Forms;
 using System.Threading;
-using System.Runtime.InteropServices;
-using System.Drawing;
-using System.Collections.Generic;
+
 using Riff.Framework;
 
 namespace Riff
@@ -60,7 +54,6 @@ namespace Riff
             });
             speecRecognitionThread.IsBackground = true;
             speecRecognitionThread.Start();
-            
         }
         #endregion
 

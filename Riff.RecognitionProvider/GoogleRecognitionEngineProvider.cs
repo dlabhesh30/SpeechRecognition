@@ -128,12 +128,7 @@ namespace Riff.RecognitionProvider
                         string transcript = finalResult.Alternatives[0].Transcript;
                         Console.WriteLine($"Transcript: {transcript}");
                         m_speechHandlerChain.HandleSpeechRequest(transcript);
-                        if (transcript.ToLowerInvariant().Contains("exit") ||
-                            transcript.ToLowerInvariant().Contains("quit"))
-                        {
-                            return false;
-                        }
-
+                        
                         TimeSpan resultEndTime = finalResult.ResultEndTime.ToTimeSpan();
 
                         // Rather than explicitly iterate over the list, we just always deal with the first
