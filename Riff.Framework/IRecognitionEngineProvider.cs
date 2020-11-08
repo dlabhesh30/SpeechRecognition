@@ -11,5 +11,8 @@ namespace Riff.Framework
         /// <returns>Task object that returns a integer value</returns>
         Task<int> RecognizeSpeech();
 
+        void StopListening();
+
+        bool IsListening();
     }
 }

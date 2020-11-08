@@ -31,6 +31,10 @@ namespace Riff
         #endregion
 
         #region Public method(s)
+        public event EventHandler StopListeningEvent;
+        #endregion
+
+        #region Public method(s)
         public void SetApplicationWindow(RiffApplication riffWindow)
         {
             m_riffWindow = riffWindow;
@@ -39,16 +43,16 @@ namespace Riff
         public override void HandleSpeechRequest(string speech)
         {
             if (speech.Contains("QUIET") || speech.Contains("SH") || speech.Contains("VOLUME DOWN"))
-                JarvisVolume(true);
+                RiffVolume(true);
             else
             if (speech.Contains("LOUD") || speech.Contains("I CANT HEAR YOU") || speech.Contains("VOLUME UP"))
-                JarvisVolume(false);
+                RiffVolume(false);
             else
             if (speech.Contains("MUTE"))
-                JarvisMute(true);
+                RiffMute(true);
             else 
             if (speech.Contains("UNMUTE") || speech.Contains("UNDO MUTE") || speech.Contains("SPEAK"))
-                JarvisMute(false);
+                RiffMute(false);
             else
             if (speech.Contains("STOP LISTENING"))
                 StopListening();
@@ -85,7 +89,14 @@ namespace Riff
         #endregion
 
         #region Private method(s)
-        private void JarvisVolume(bool volumeDown)
+        protected virtual void TriggerStopListeningEvent(EventArgs e)
+        {
+            StopListeningEvent?.Invoke(this, e);
+        }
+        #endregion
+
+        #region Private method(s)
+        private void RiffVolume(bool volumeDown)
         {
             int volume = m_speechSynthesizer.Volume;
             if (volumeDown)
@@ -116,7 +127,7 @@ namespace Riff
             }
         }
 
-        private void JarvisMute(bool mute)
+        private void RiffMute(bool mute)
         {
             if (mute)
             {
@@ -134,6 +145,7 @@ namespace Riff
         private void StopListening()
         {
             Console.WriteLine("Not Listening");
+            TriggerStopListeningEvent(EventArgs.Empty);
             m_stopListeningTimer.Start();
         }
 
@@ -144,9 +156,11 @@ namespace Riff
             goodbyeThread.Start();
             goodbyeThread.Join();
 
+            StopListening();
             m_speechSynthesizer.SpeakAsyncCancelAll();
             m_speechSynthesizer.Dispose();
             m_riffWindow.Close();
+            Application.Exit();
         }
 
         private void Tick(object sender, EventArgs e)

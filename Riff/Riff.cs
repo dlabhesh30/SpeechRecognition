@@ -2,6 +2,7 @@
 using System.Threading;
 
 using Riff.Framework;
+using System;
 
 namespace Riff
 {
@@ -30,11 +31,17 @@ namespace Riff
             ResovleTypes();
             InitializeComponent();
 
+            m_riffSystemOperations.StopListeningEvent += OnStopListeningEvent;
             m_speechHandlerChain.SetupHandlerChain();
 
             m_riffSystemOperations.SetApplicationWindow(this);
             m_riffSystemOperations.Minimize();
             this.FormBorderStyle = FormBorderStyle.None;
+        }
+
+        private void OnStopListeningEvent(object sender, EventArgs e)
+        {
+            m_speechRecognitionEngine.StopListening();
         }
 
         private void ResovleTypes()
@@ -48,12 +55,7 @@ namespace Riff
 
         private void StartRecognizing()
         {
-            var speecRecognitionThread = new Thread(() =>
-            {
-                var result = m_speechRecognitionEngine.RecognizeSpeech().Result;
-            });
-            speecRecognitionThread.IsBackground = true;
-            speecRecognitionThread.Start();
+            m_speechRecognitionEngine.RecognizeSpeech();
         }
         #endregion
 
@@ -65,44 +67,5 @@ namespace Riff
             welcomeThread.Start();
         }
         #endregion
-
-        /* public googleOther google = new googleOther();
-         public void googleSearch()
-         {
-             google.Show();
-
-             Thread searchForThread = new Thread(new ThreadStart(() => m_speechContext.SearchFor()));
-             searchForThread.IsBackground = true;
-             searchForThread.Start();
-
-             m_speechEngine.RecognizeAsyncCancel();
-
-             m_speechEngine.SetInputToDefaultAudioDevice();
-             m_speechEngine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(getPhrases().ToArray()))));
-             m_speechEngine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(whatToGoogle_SpeechRecognized);
-             m_speechEngine.RecognizeAsync(RecognizeMode.Multiple);
-         }
-
-         private void whatToGoogle_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
-         {
-             if (e.Result.Text.ToUpper().Equals("SEARCH"))
-             {
-                 google.searchGoogle();
-
-                 Thread loading = new Thread(new ThreadStart(() => m_speechContext.Loading()));
-                 loading.IsBackground = true;
-                 loading.Start();
-                 try
-                 {
-                     m_speechEngine.RecognizeAsync(RecognizeMode.Multiple);
-                 }
-                 catch (System.Exception ex)
-                 {
-                     Console.WriteLine(ex.ToString());
-                 }
-                 m_speechEngine.RecognizeAsyncStop();
-             }
-
-         }*/
     }
 }

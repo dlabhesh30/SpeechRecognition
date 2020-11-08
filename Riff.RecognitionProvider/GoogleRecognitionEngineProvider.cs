@@ -23,6 +23,7 @@ namespace Riff.RecognitionProvider
             private IMicrophoneContext m_microphoneContext;
             private readonly StreamingRecognizeRequest m_streamingRecognizeRequest;
             private readonly ISpeechHandlerChain m_speechHandlerChain;
+            private bool m_isListening = true;
             #endregion
 
             #region Constructor(s)
@@ -43,6 +44,16 @@ namespace Riff.RecognitionProvider
             {
                 await RunAsync();
                 return 0;
+            }
+
+            public void StopListening()
+            {
+                m_isListening = false;
+            }
+
+            public bool IsListening()
+            {
+                return m_isListening;
             }
             #endregion
 
@@ -73,8 +84,9 @@ namespace Riff.RecognitionProvider
                     while (true)
                     {
                         await StartStreamAsync();
-                        // ProcessResponses will return false if it hears "exit" or "quit".
-                        if (!ProcessResponses())
+
+                        ProcessResponses();
+                        if (!IsListening())
                         {
                             return;
                         }
