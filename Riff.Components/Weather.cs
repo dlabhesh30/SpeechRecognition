@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Riff.Framework;
 
-namespace Riff
+namespace Riff.Components
 {
     public class Weather : AbstractSpeechHandler
     {

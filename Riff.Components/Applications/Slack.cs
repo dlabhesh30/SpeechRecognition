@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Riff
+namespace Riff.Components
 {
     public class Slack : AbstractApplicationContext
     {

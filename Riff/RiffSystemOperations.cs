@@ -3,7 +3,9 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 using System.Speech.Synthesis;
+
 using Riff.Framework;
+using Riff.Components;
 
 namespace Riff
 {

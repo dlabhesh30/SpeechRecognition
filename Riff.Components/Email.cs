@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Threading;
 
-namespace Riff
+namespace Riff.Components
 {
     public class Email
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Collections.Generic;
 using Riff.Framework;
 
-namespace Riff
+namespace Riff.Components
 {
     public class Calendar : AbstractSpeechHandler
     {

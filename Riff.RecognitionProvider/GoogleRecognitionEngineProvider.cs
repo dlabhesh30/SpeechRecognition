@@ -137,11 +137,11 @@ namespace Riff.RecognitionProvider
                     var finalResult = response.Results.FirstOrDefault(r => r.IsFinal);
                     if (finalResult != null)
                     {
-                        string transcript = finalResult.Alternatives[0].Transcript;
+                        var transcript = finalResult.Alternatives[0].Transcript;
                         Console.WriteLine($"Transcript: {transcript}");
                         m_speechHandlerChain.HandleSpeechRequest(transcript);
                         
-                        TimeSpan resultEndTime = finalResult.ResultEndTime.ToTimeSpan();
+                        var resultEndTime = finalResult.ResultEndTime.ToTimeSpan();
 
                         // Rather than explicitly iterate over the list, we just always deal with the first
                         // element, either removing it or stopping.

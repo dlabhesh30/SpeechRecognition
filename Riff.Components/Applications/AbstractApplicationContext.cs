@@ -1,18 +1,24 @@
-﻿
-using System;
+﻿using System;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.IO;
 using System.Collections.Generic;
+
 using Riff.Framework;
 
-namespace Riff
+namespace Riff.Components
 {
     abstract public class AbstractApplicationContext : AbstractSpeechHandler
     {
+        #region Private Data
+        private bool m_commonBasePath = false;
+        private string m_commonBasePathName = "";
+        private string m_executableName = "";
+        private string m_applicationPath = "";
+        #endregion
+
         #region Protected Data
         protected string m_applicationName = "";
-        private string m_applicationPath = "";
         protected string m_additionalAppStartMessage = "";
         protected IDictionary<string, string> m_supportedApplications = null;
         protected bool m_applciationOpened = false;
@@ -48,7 +54,14 @@ namespace Riff
         #region Protected Method(s)
         protected void SetApplicationPath()
         {
-            m_applicationPath = m_supportedApplications[m_applicationName];
+            if (m_commonBasePath)
+            {
+                m_applicationPath = m_supportedApplications[m_commonBasePathName] + "/" + m_executableName;
+            }
+            else
+            {
+                m_applicationPath = m_supportedApplications[m_applicationName];
+            }
         }
 
         protected virtual void SetAlternateAliasForApplciation()
@@ -60,6 +73,13 @@ namespace Riff
         {
             // Default implementation
             return false;
+        }
+
+        protected void SetCommonApplicationBasePathOverride(string commonBasePathName, string executableName)
+        {
+            m_commonBasePath = true;
+            m_commonBasePathName = commonBasePathName;
+            m_executableName = executableName;
         }
         #endregion
 

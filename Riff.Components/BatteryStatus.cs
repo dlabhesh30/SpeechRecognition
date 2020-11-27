@@ -5,7 +5,7 @@ using System.Text;
 using System.Timers;
 using System.Windows.Forms;
 
-namespace Riff
+namespace Riff.Components
 {
     public class BatteryStatus : AbstractSpeechHandler
     {

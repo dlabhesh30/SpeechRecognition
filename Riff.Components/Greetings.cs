@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Riff
+namespace Riff.Components
 {
     public class Greetings : AbstractSpeechHandler
     {

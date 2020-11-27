@@ -1,5 +1,6 @@
-﻿
-using Autofac;
+﻿using Autofac;
+
+using Riff.Components;
 using Riff.Framework;
 using Riff.RecognitionProvider;
 
@@ -116,6 +117,12 @@ namespace Riff
                 .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .AsSelf();
 
+            builder.RegisterType<Powerpoint>()
+                .As<Powerpoint>()
+                .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
+                .AsSelf();
+            
             builder.RegisterType<Slack>()
                 .As<Slack>()
                 .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
 using Microsoft.Office.Interop.Outlook;
+
 using Riff.Framework;
 
-namespace Riff
+namespace Riff.Components
 {
     public class Outlook : AbstractApplicationContext
     {
