@@ -15,8 +15,8 @@ namespace Riff.Components.Google
         private string m_apiBasePath = "https://customsearch.googleapis.com/customsearch/v1?";
         private WebRequest m_webRequest = null;
         private GoogleSearchResponseModel m_searchResponseModel = null;
-        private string m_apiKeyParam = "key=AIzaSyBdEvKLK5BeNWkCPu9Q_dRtCaPl8WWkipw";
-        private string m_searchEngineIdParam = "cx=69f36207f89663c83";
+        private string m_apiKeyParam = "key=";
+        private string m_searchEngineIdParam = "cx=";
         #endregion
 
         #region Constructor(s)
