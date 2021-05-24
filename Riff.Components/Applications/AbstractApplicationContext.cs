@@ -56,7 +56,7 @@ namespace Riff.Components
         {
             if (m_commonBasePath)
             {
-                m_applicationPath = m_supportedApplications[m_commonBasePathName] + "/" + m_executableName;
+                m_applicationPath = m_supportedApplications[m_commonBasePathName] + "\\" + m_executableName;
             }
             else
             {

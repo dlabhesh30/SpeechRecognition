@@ -1,6 +1,7 @@
 ﻿using Autofac;
 
 using Riff.Components;
+using Riff.Components.Google;
 using Riff.Framework;
 using Riff.RecognitionProvider;
 
@@ -66,11 +67,6 @@ namespace Riff
             builder.RegisterType<Email>()
                 .As<Email>()
                 .SingleInstance();
-
-            /*builder.RegisterType<Search>()
-                .As<Search>()
-                .SingleInstance();
-                */
                 
             builder.RegisterType<Clock>()
                 .As<Clock>()
@@ -79,6 +75,12 @@ namespace Riff
 
             builder.RegisterType<Weather>()
                 .As<Weather>()
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
+                .WithParameter(new TypedParameter(typeof(WebRequest), webRequest))
+                .SingleInstance();
+
+            builder.RegisterType<GoogleSearch>()
+                .As<GoogleSearch>()
                 .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .WithParameter(new TypedParameter(typeof(WebRequest), webRequest))
                 .SingleInstance();
@@ -122,7 +124,13 @@ namespace Riff
                 .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))
                 .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
                 .AsSelf();
-            
+
+            builder.RegisterType<Excel>()
+                .As<Excel>()
+                .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))
+                .WithParameter(new TypedParameter(typeof(ISpeechContext), speechContext))
+                .AsSelf();
+
             builder.RegisterType<Slack>()
                 .As<Slack>()
                 .WithParameter(new TypedParameter(typeof(IRiffConfigurableSettings), riffConfigurableSettings))

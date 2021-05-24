@@ -1,5 +1,6 @@
 ﻿using Riff.Framework;
 using Riff.Components;
+using Riff.Components.Google;
 
 namespace Riff
 {
@@ -12,6 +13,7 @@ namespace Riff
         private Calendar m_calendar = null;
         private Clock m_clock = null;
         private Weather m_weather = null;
+        private GoogleSearch m_googleSearch = null;
         private RiffSystemOperations m_riffSystemOperations = null;
         private BatteryStatus m_batteryStatus = null;
         private Outlook m_outlook = null;
@@ -19,6 +21,7 @@ namespace Riff
         private AbstractApplicationContext m_slack = null;
         private AbstractApplicationContext m_word = null;
         private AbstractApplicationContext m_powerpoint = null;
+        private AbstractApplicationContext m_excel = null;
         #endregion
 
         #region Constructor(s)
@@ -39,8 +42,10 @@ namespace Riff
             m_calendar.SetSuccessor(m_chrome);
             m_chrome.SetSuccessor(m_slack);
             m_slack.SetSuccessor(m_word);
-            m_word.SetSuccessor(m_batteryStatus);
-            m_batteryStatus.SetSuccessor(m_powerpoint);
+            m_word.SetSuccessor(m_powerpoint);
+            m_powerpoint.SetSuccessor(m_excel);
+            m_excel.SetSuccessor(m_batteryStatus);
+            m_batteryStatus.SetSuccessor(m_googleSearch);
         }
 
         public void HandleSpeechRequest(string speech)
@@ -63,7 +68,9 @@ namespace Riff
             m_slack = Bootstrapper.ResolveType<Slack>();
             m_word = Bootstrapper.ResolveType<Word>();
             m_powerpoint = Bootstrapper.ResolveType<Powerpoint>();
+            m_excel = Bootstrapper.ResolveType<Excel>();
             m_batteryStatus = Bootstrapper.ResolveType<BatteryStatus>();
+            m_googleSearch = Bootstrapper.ResolveType<GoogleSearch>();
         }
         #endregion
     }

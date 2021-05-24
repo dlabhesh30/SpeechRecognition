@@ -29,13 +29,20 @@ namespace Riff.RecognitionProvider
             #region Constructor(s)
             public GoogleRecognitionEngineProvider(IMicrophoneContext microphoneContext, ISpeechHandlerChain speechHandlerChain)
             {
-                m_client = SpeechClient.Create();
-                m_microphoneContext = microphoneContext;
-                m_bytesPerSecond = m_microphoneContext.SampleRate() *
-                    m_microphoneContext.ChannelCount() *
-                    m_microphoneContext.BytesPerSample();
-                m_speechHandlerChain = speechHandlerChain;
-                m_streamingRecognizeRequest = CreateStreamingRecognizeRequest();
+                try
+                {
+                    m_client = SpeechClient.Create();
+                    m_microphoneContext = microphoneContext;
+                    m_bytesPerSecond = m_microphoneContext.SampleRate() *
+                        m_microphoneContext.ChannelCount() *
+                        m_microphoneContext.BytesPerSample();
+                    m_speechHandlerChain = speechHandlerChain;
+                    m_streamingRecognizeRequest = CreateStreamingRecognizeRequest();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
             }
             #endregion
 
@@ -79,19 +86,26 @@ namespace Riff.RecognitionProvider
 
             private async Task RunAsync()
             {
-                using (var microphone = m_microphoneContext.StartListening())
+                try
                 {
-                    while (true)
+                    using (var microphone = m_microphoneContext.StartListening())
                     {
-                        await StartStreamAsync();
-
-                        ProcessResponses();
-                        if (!IsListening())
+                        while (true)
                         {
-                            return;
+                            await StartStreamAsync();
+
+                            ProcessResponses();
+                            if (!IsListening())
+                            {
+                                return;
+                            }
+                            await TransferMicrophoneChunkAsync();
                         }
-                        await TransferMicrophoneChunkAsync();
                     }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message.ToString());
                 }
             }
 
@@ -137,9 +151,9 @@ namespace Riff.RecognitionProvider
                     var finalResult = response.Results.FirstOrDefault(r => r.IsFinal);
                     if (finalResult != null)
                     {
-                        var transcript = finalResult.Alternatives[0].Transcript;
-                        Console.WriteLine($"Transcript: {transcript}");
-                        m_speechHandlerChain.HandleSpeechRequest(transcript);
+                        var recognizedSpeech = finalResult.Alternatives[0].Transcript;
+                        Console.WriteLine($"Recognized Speech: {recognizedSpeech}");
+                        m_speechHandlerChain.HandleSpeechRequest(recognizedSpeech);
                         
                         var resultEndTime = finalResult.ResultEndTime.ToTimeSpan();
 
