@@ -31,17 +31,21 @@ namespace Riff
                 .As<IRiffConfigurableSettings>()
                 .SingleInstance();
 
-            builder.RegisterType<MicrophoneContext>()
+            var microphoneContext = new MicrophoneContext();
+            builder.RegisterInstance(microphoneContext)
                 .As<IMicrophoneContext>()
                 .SingleInstance();
 
-            builder.RegisterType<SpeechHandlerChain>()
+            var speechHandlerChain = new SpeechHandlerChain();
+            builder.RegisterInstance(speechHandlerChain)
                 .As<ISpeechHandlerChain>()
                 .SingleInstance();
 
             // Injection: RecognitionEngineProvider
             builder.RegisterType<GoogleRecognitionEngineProvider>()
                 .As<IRecognitionEngineProvider>()
+                .WithParameter(new TypedParameter(typeof(IMicrophoneContext), microphoneContext))
+                .WithParameter(new TypedParameter(typeof(ISpeechHandlerChain), speechContext))
                 .InstancePerDependency();
 
             // Injection: WebRequest
