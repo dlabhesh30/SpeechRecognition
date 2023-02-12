@@ -18,7 +18,8 @@ namespace Riff
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Bootstrapper.Bootstrap();
+            Bootstrapper bootstrapper = new Bootstrapper();
+            bootstrapper.Bootstrap();
             Application.Run(new RiffApplication());
         }
     }

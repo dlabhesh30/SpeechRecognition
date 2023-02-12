@@ -21,10 +21,10 @@ namespace Riff
         #endregion
 
         #region Constructor(s)
-        public RiffSystemOperations(ISpeechContext speechContext)
+        public RiffSystemOperations(ISpeechContext speechContext, Greetings greetings)
             : base(speechContext)
         {
-            m_greetings = Bootstrapper.ResolveType<Greetings>();
+            m_greetings = greetings;
             m_speechSynthesizer = m_speechContext.SpeechSynthesizer();
             m_stopListeningTimer = new System.Windows.Forms.Timer();
             m_stopListeningTimer.Tick += new EventHandler(Tick);

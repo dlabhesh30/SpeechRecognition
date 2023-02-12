@@ -12,7 +12,7 @@ namespace Riff.Components
 {
     public class Email
     {
-        Application outLookApp = new Application();
+        // Application outLookApp = new Application();
         
         //load sendMailItem form
         //grab info
