@@ -1,26 +1,26 @@
-﻿using System;
+﻿using Riff.Components.Google;
+using Riff.Framework;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
-using Newtonsoft.Json.Linq;
-
-using Riff.Framework;
-
-namespace Riff.Components.Google
+namespace Riff.Components.ChatGPT
 {
-    public class GoogleSearch : AbstractSpeechHandler
+    public class GeneralSearch : AbstractSpeechHandler
     {
         #region Private Data
-        private string m_apiBasePath = "https://customsearch.googleapis.com/customsearch/v1?";
+        private string m_apiBasePath = "https://api.openai.com/v1/completions";
         private WebRequest m_webRequest = null;
         private GoogleSearchResponseModel m_searchResponseModel = null;
-        private string m_apiKeyParam = "key=";
+        private string m_apiBearerAuth = "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";
         private string m_searchEngineIdParam = "cx=";
         #endregion
 
         #region Constructor(s)
-        public GoogleSearch(ISpeechContext speechContext, WebRequest webRequest)
+        public GeneralSearch(ISpeechContext speechContext, WebRequest webRequest)
             : base(speechContext)
         {
             m_webRequest = webRequest;
@@ -31,8 +31,8 @@ namespace Riff.Components.Google
         #region Public method(s)
         public override void HandleSpeechRequest(string speech)
         {
-            if (speech.Contains("GOOGLE"))
-                QueryGoogle(speech);
+            if (speech.Contains("SEARCH") || speech.Contains("SEARCH ONLINE") || speech.Contains("SEARCH WEB"))
+                QueryChatGPT(speech);
             else
                 this.PassRequestHandling(speech);
 
@@ -42,7 +42,7 @@ namespace Riff.Components.Google
         #region Private method(s)
         private string RequestUrl(string queryString)
         {
-            return m_apiBasePath + m_apiKeyParam + "&" + m_searchEngineIdParam + "&q=" + queryString;
+            return m_apiBasePath;
         }
 
         private string FormatQueryString(string queryString)
@@ -56,7 +56,7 @@ namespace Riff.Components.Google
             return result;
         }
 
-        private void QueryGoogle(string queryString)
+        private void QueryChatGPT(string queryString)
         {
             if (string.IsNullOrEmpty(queryString))
             {
@@ -64,8 +64,8 @@ namespace Riff.Components.Google
                 return;
             }
             var query = FormatQueryString(queryString);
-            var responseString = m_webRequest.GetRequest(RequestUrl(query)).Result;
-            if(SetGoogleResponseModel(responseString))
+            var responseString = m_webRequest.PostRequest(RequestUrl(query), m_apiBearerAuth).Result;
+            if (SetGoogleResponseModel(responseString))
             {
                 SpeakSearchResults();
             }

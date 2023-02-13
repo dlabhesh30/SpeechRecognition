@@ -33,13 +33,13 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
-            // JarvisApp
+            // RiffApp
             // 
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("JarvisApp.Icon")));
             this.notifyIcon.Text = "Riff";
             this.notifyIcon.Visible = true;
             // 
-            // Jarvis
+            // Riff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
