@@ -7,13 +7,6 @@ using System.Threading.Tasks;
 
 namespace Riff.Framework
 {
-    class customObj
-    {
-        public string param1 { get; set; }
-        public string param2 { get; set; }
-        public string param3 { get; set; }
-    }
-
     public class WebRequest
     {
         public async Task<string> GetRequest(string path)
@@ -31,19 +24,21 @@ namespace Riff.Framework
             }
         }
 
-        public async Task<string> PostRequest(string path, string authHeader, bool bearerAuth = true)
+        public async Task<string> PostRequest(string path, string authHeader, object requestBody, bool bearerAuth = true)
         {
             using (var client = new HttpClient())
             {
-                customObj custom = new customObj();
-                var jsonContent = JsonConvert.SerializeObject(custom);
-               
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri(path),
-                    Content = new StringContent(jsonContent, Encoding.UTF8, "application/json")
+                    RequestUri = new Uri(path)
                 };
+                var requestBodyPresent = requestBody != null;
+                if (requestBodyPresent)
+                {
+                    var jsonRequestBody = JsonConvert.SerializeObject(requestBody);
+                    request.Content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
+                }
                 if (bearerAuth)
                 {
                     request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", authHeader);

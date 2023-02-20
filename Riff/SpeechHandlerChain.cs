@@ -1,6 +1,7 @@
 ﻿using Riff.Framework;
 using Riff.Components;
 using Riff.Components.Google;
+using Riff.Components.ChatGPT;
 
 namespace Riff
 {
@@ -13,7 +14,7 @@ namespace Riff
         private Calendar m_calendar = null;
         private Clock m_clock = null;
         private Weather m_weather = null;
-        private GoogleSearch m_googleSearch = null;
+        private GeneralSearch m_generalSearch = null;
         private RiffSystemOperations m_riffSystemOperations = null;
         private BatteryStatus m_batteryStatus = null;
         private Outlook m_outlook = null;
@@ -45,7 +46,7 @@ namespace Riff
             m_word.SetSuccessor(m_powerpoint);
             m_powerpoint.SetSuccessor(m_excel);
             m_excel.SetSuccessor(m_batteryStatus);
-            m_batteryStatus.SetSuccessor(m_googleSearch);
+            m_batteryStatus.SetSuccessor(m_generalSearch);
         }
 
         public void HandleSpeechRequest(string speech)
@@ -70,7 +71,7 @@ namespace Riff
             m_powerpoint = Bootstrapper.ResolveType<Powerpoint>();
             m_excel = Bootstrapper.ResolveType<Excel>();
             m_batteryStatus = Bootstrapper.ResolveType<BatteryStatus>();
-            m_googleSearch = Bootstrapper.ResolveType<GoogleSearch>();
+            m_generalSearch = Bootstrapper.ResolveType<GeneralSearch>();
         }
         #endregion
     }

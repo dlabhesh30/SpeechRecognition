@@ -1,7 +1,7 @@
 ﻿using Autofac;
 
 using Riff.Components;
-using Riff.Components.Google;
+using Riff.Components.ChatGPT;
 using Riff.Framework;
 using Riff.RecognitionProvider;
 
@@ -72,8 +72,8 @@ namespace Riff
                 .As<Weather>()
                 .SingleInstance();
 
-            builder.RegisterType<GoogleSearch>()
-                .As<GoogleSearch>()
+            builder.RegisterType<GeneralSearch>()
+                .As<GeneralSearch>()
                 .SingleInstance();
 
             builder.RegisterType<BatteryStatus>()
