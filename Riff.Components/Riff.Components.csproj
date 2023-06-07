@@ -58,6 +58,7 @@
     <Compile Include="BatteryStatus.cs" />
     <Compile Include="Calender.cs" />
     <Compile Include="ChatGPT\GeneralSearch.cs" />
+    <Compile Include="ChatGPT\GeneralSearchResponseModel.cs" />
     <Compile Include="Clock.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Google search\GoogleSearch.cs" />

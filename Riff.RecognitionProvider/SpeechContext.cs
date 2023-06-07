@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Speech.Synthesis;
-
 using Riff.Framework;
 
 namespace Riff.RecognitionProvider
@@ -28,11 +27,15 @@ namespace Riff.RecognitionProvider
         public SpeechContext()
         {
             PopulateAvailableVoices();
-            var voice = m_availableVoices[AvailableVoices.Helen_en_US];
+            var voice = m_availableVoices[AvailableVoices.Hazel_en_GB];
             m_speechSynthesizer = new SpeechSynthesizer();
             m_cultureInfo = new CultureInfo(voice.Value, true);
             m_speechSynthesizer.SelectVoiceByHints(VoiceGender.Female, VoiceAge.Adult, voice.Key, m_cultureInfo);
         }
+        #endregion
+
+        #region Public Properties
+        public bool CurrentlyTalking { get; set; }
         #endregion
 
         #region Public method(s)
@@ -53,8 +56,24 @@ namespace Riff.RecognitionProvider
                     speechBuilder.AppendSsmlMarkup(time);
                 }
             }
-            m_speechSynthesizer.Speak(speechBuilder);
-        }
+            try
+            {
+                Prompt prompt = new Prompt(speechBuilder);
+                m_speechSynthesizer.SpeakCompleted += new EventHandler<SpeakCompletedEventArgs>(
+                    (sender, args) =>
+                    {
+                        CurrentlyTalking = false;
+                    }
+                );
+
+                m_speechSynthesizer.SpeakAsync(prompt);
+                CurrentlyTalking = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to respond - Error : " + ex.ToString());
+            }
+    }
 
         public void NoOptionAvailable()
         {
@@ -65,12 +84,14 @@ namespace Riff.RecognitionProvider
         #region Private method(s)
         private void PopulateAvailableVoices()
         {
-            m_availableVoices = new Dictionary<AvailableVoices, KeyValuePair<int, string>>();
-            m_availableVoices.Add(AvailableVoices.Hayley_en_AU, new KeyValuePair<int, string>(0, "en-AU"));
-            m_availableVoices.Add(AvailableVoices.Heather_en_CA, new KeyValuePair<int, string>(0, "en-CA"));
-            m_availableVoices.Add(AvailableVoices.Hazel_en_GB, new KeyValuePair<int, string>(0, "en-GB"));
-            m_availableVoices.Add(AvailableVoices.ZiraPro_en_US, new KeyValuePair<int, string>(2, "en-US"));
-            m_availableVoices.Add(AvailableVoices.Helen_en_US, new KeyValuePair<int, string>(0, "en-US"));
+            m_availableVoices = new Dictionary<AvailableVoices, KeyValuePair<int, string>>
+            {
+                { AvailableVoices.Hayley_en_AU, new KeyValuePair<int, string>(0, "en-AU") },
+                { AvailableVoices.Heather_en_CA, new KeyValuePair<int, string>(0, "en-CA") },
+                { AvailableVoices.Hazel_en_GB, new KeyValuePair<int, string>(0, "en-GB") },
+                { AvailableVoices.ZiraPro_en_US, new KeyValuePair<int, string>(2, "en-US") },
+                { AvailableVoices.Helen_en_US, new KeyValuePair<int, string>(0, "en-US") }
+            };
         }
         #endregion
     }

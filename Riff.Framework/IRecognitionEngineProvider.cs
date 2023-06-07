@@ -13,6 +13,8 @@ namespace Riff.Framework
 
         void StopListening();
 
+        void ResumeListening();
+
         bool IsListening();
     }
 }

@@ -35,6 +35,7 @@ namespace Riff
             InitializeComponent();
 
             m_riffSystemOperations.StopListeningEvent += OnStopListeningEvent;
+            m_riffSystemOperations.ResumeListeningEvent += OnResumeListeningEvent;
             m_speechHandlerChain.SetupHandlerChain();
 
             m_riffSystemOperations.SetApplicationWindow(this);
@@ -45,6 +46,11 @@ namespace Riff
         private void OnStopListeningEvent(object sender, EventArgs e)
         {
             m_speechRecognitionEngine.StopListening();
+        }
+
+        private void OnResumeListeningEvent(object sender, EventArgs e)
+        {
+            m_speechRecognitionEngine.ResumeListening();
         }
 
         private void ResovleTypes()

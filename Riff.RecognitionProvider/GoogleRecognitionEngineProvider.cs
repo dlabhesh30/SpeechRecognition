@@ -58,6 +58,11 @@ namespace Riff.RecognitionProvider
                 m_isListening = false;
             }
 
+            public void ResumeListening()
+            {
+                m_isListening = true;
+            }
+
             public bool IsListening()
             {
                 return m_isListening;

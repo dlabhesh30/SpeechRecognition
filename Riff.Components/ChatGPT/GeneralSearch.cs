@@ -87,8 +87,16 @@ namespace Riff.Components.ChatGPT
         #region Private Data
         private string m_apiBasePath = "https://api.openai.com/v1/completions";
         private WebRequest m_webRequest = null;
-        private GoogleSearchResponseModel m_searchResponseModel = null;
+        private GeneralSearchResponseModel m_searchResponseModel = null;
         private string m_apiBearerAuth = "";
+        private List<string> m_searchTerms = new List<string>
+        {
+            "SEARCH",
+            "SEARCH WEB",
+            "SEARCH ONLINE",
+            "TELL ME ABOUT",
+            "GIVE"
+        };
         #endregion
 
         #region Constructor(s)
@@ -96,34 +104,37 @@ namespace Riff.Components.ChatGPT
             : base(speechContext)
         {
             m_webRequest = webRequest;
-            m_searchResponseModel = new GoogleSearchResponseModel();
+            m_searchResponseModel = new GeneralSearchResponseModel();
         }
         #endregion
 
         #region Public method(s)
         public override void HandleSpeechRequest(string speech)
         {
-            if (speech.Contains("SEARCH") || speech.Contains("SEARCH ONLINE") || speech.Contains("SEARCH WEB"))
+            if (m_searchTerms.Any(s => speech.StartsWith(s, StringComparison.OrdinalIgnoreCase) || speech.Contains(s)))
+            {
                 QueryChatGPT(speech);
+            }
             else
-                this.PassRequestHandling(speech);
+            {
+                PassRequestHandling(speech);
+            }
 
         }
         #endregion
 
         #region Private method(s)
-        private string RequestUrl(string queryString)
+        private string RequestUrl()
         {
             return m_apiBasePath;
         }
 
-        private string FormatQueryString(string queryString)
+        private string FormatSearchTerm(string queryString)
         {
-            var result = "";
-            var querySplit = queryString.Split(new[] { "FOR" }, StringSplitOptions.None);
-            if (querySplit.Length > 1)
+            var result = string.Empty;
+            foreach (var searchTerm in m_searchTerms)
             {
-                result = querySplit[1];
+                result = queryString.Replace(searchTerm, string.Empty);
             }
             return result;
         }
@@ -135,16 +146,16 @@ namespace Riff.Components.ChatGPT
                 m_speechContext.Speak("Empty search query ! Please tell me what to search.");
                 return;
             }
-            var query = FormatQueryString(queryString);
-            ChatGptSearchRequestBody requestBody = new ChatGptSearchRequestBody(queryString);
-            var responseString = m_webRequest.PostRequest(RequestUrl(query), m_apiBearerAuth, requestBody.SearchRequestBody()).Result;
-            if (SetGoogleResponseModel(responseString))
+            var searchTerm = FormatSearchTerm(queryString);
+            ChatGptSearchRequestBody requestBody = new ChatGptSearchRequestBody(searchTerm);
+            var responseString = m_webRequest.PostRequest(RequestUrl(), m_apiBearerAuth, requestBody.SearchRequestBody()).Result;
+            if (SetSearchResponseModel(responseString))
             {
                 SpeakSearchResults();
             }
         }
 
-        private bool SetGoogleResponseModel(string response)
+        private bool SetSearchResponseModel(string response)
         {
             var result = false;
             if (!string.IsNullOrEmpty(response) && IsResponseValid(response))
@@ -167,13 +178,10 @@ namespace Riff.Components.ChatGPT
             weather.AppendLine("I see " + weatherModel.Description);
             weather.AppendLine("It feels like " + weatherModel.FeelsLike + " degree celsius.");
             weather.AppendLine("and Humidity is " + weatherModel.Humidity);
-            */
-            if (m_searchResponseModel.TotalResults > 0)
-            {
-                var searchSpeechThread = new Thread(new ThreadStart(() => m_speechContext.Speak(m_searchResponseModel.SearchTerm)));
-                searchSpeechThread.IsBackground = true;
-                searchSpeechThread.Start();
-            }
+            */ 
+            var searchSpeechThread = new Thread(new ThreadStart(() => m_speechContext.Speak(m_searchResponseModel.SearchResponse)));
+            searchSpeechThread.IsBackground = true;
+            searchSpeechThread.Start();
         }
         #endregion
     }

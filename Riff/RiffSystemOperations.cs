@@ -34,6 +34,7 @@ namespace Riff
 
         #region Public method(s)
         public event EventHandler StopListeningEvent;
+        public event EventHandler ResumeListeningEvent;
         #endregion
 
         #region Public method(s)
@@ -94,6 +95,11 @@ namespace Riff
         protected virtual void TriggerStopListeningEvent(EventArgs e)
         {
             StopListeningEvent?.Invoke(this, e);
+        }
+
+        protected void TriggerResumeListeningEvent(EventArgs e)
+        {
+            ResumeListeningEvent?.Invoke(this, e);
         }
         #endregion
 
@@ -173,6 +179,8 @@ namespace Riff
             {
                 Console.WriteLine("You may Speak");
                 m_stopListeningTimer.Stop();
+                TriggerResumeListeningEvent(EventArgs.Empty);
+
             }
         }
         #endregion
